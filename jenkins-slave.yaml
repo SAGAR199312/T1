@@ -1,0 +1,52 @@
+---
+- name: Install Maven from tar.gz
+  hosts: jenkins-slave
+  become: yes  # Use 'become' to run tasks as sudo
+  tasks:
+    - name: Update the apt package index
+      apt:
+        update_cache: yes
+
+    - name: Install required packages for extraction
+      apt:
+        name:
+          - openjdk-11-jdk  # Install Java if needed
+          - wget             # To download the Maven tar.gz file
+          - tar              # To extract the tar.gz file
+        state: present
+
+    - name: Download Maven tar.gz
+      get_url:
+        url: https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz # Update with desired version
+        dest: /tmp/apache-maven.tar.gz
+
+    - name: Extract Maven tar.gz to /opt
+      unarchive:
+        src: /tmp/apache-maven.tar.gz
+        dest: /opt/
+        remote_src: yes
+
+  #  - name: Create a symlink for Maven
+   #   command: ln -s /opt/apache-maven-3.8.8 /opt/maven  # Adjust version as needed
+
+    #- name: Set environment variables for Maven
+     # lineinfile:
+      #  path: /etc/profile.d/maven.sh
+       # line: "{{ item }}"
+        #create: yes
+      #loop:
+       # - "export M2_HOME=/opt/maven"
+        #- "export PATH=$M2_HOME/bin:$PATH"
+
+    #- name: Make the script executable
+     # file:
+      #  path: /etc/profile.d/maven.sh
+       # mode: '0755'
+
+    #- name: Verify Maven installation
+     # command: /opt/maven/bin/mvn -version
+      #register: maven_version_output
+
+    #- name: Display Maven version
+     # debug:
+      #  var: maven_version_output.stdout
