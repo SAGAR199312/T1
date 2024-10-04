@@ -1,6 +1,6 @@
 def registry = 'https://trial3tt8b4.jfrog.io/' 
-//def imageName = 'sagar1993.jfrog.io/sagar-docker-local/ttrend'
-  // def version   = '2.0.2'
+def imageName = 'sagar1993.jfrog.io/sagar-docker-local/ttrend'
+   def version   = '2.0.2'
 pipeline{
     agent {
         node { 
@@ -39,7 +39,7 @@ pipeline{
         steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
-                     def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"nani"
+                     def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"sagar"
                      def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                      def uploadSpec = """{
                           "files": [
