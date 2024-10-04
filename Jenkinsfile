@@ -1,5 +1,5 @@
 def registry = 'https://trial3tt8b4.jfrog.io/' 
-def imageName = 'sagar1993.jfrog.io/sagar-docker-local/ttrend'
+def imageName = 'trial3tt8b4.jfrog.io/doc-docker/ttrend'
    def version   = '2.0.2'
 pipeline{
     agent {
@@ -64,7 +64,7 @@ pipeline{
 //}
 
 
-   /* stage(" Docker Build ") {
+    stage(" Docker Build ") {
       steps {
         script {
            echo '<--------------- Docker Build Started --------------->'
@@ -89,11 +89,10 @@ pipeline{
             //  steps {
               //  script{
                 //  //sh './deploy.sh'
-                  //sh 'helm install ttrend-1 ttrend-1-0.1.0.tgz'
+                 // sh 'helm install ttrend-1 ttrend-1-0.1.0.tgz'
                 //}
               //}
     //}
     } 
-}*/
-    }
 }
+    
