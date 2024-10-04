@@ -78,7 +78,7 @@ pipeline{
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry(registry, 'nani'){
+                docker.withRegistry(registry, 'sagar'){
                     app.push()
                 }    
                echo '<--------------- Docker Publish Ended --------------->'  
